@@ -18,6 +18,14 @@ export default class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevState) {
+    console.log("componentDidUpdate")
+  }
+
+  componentDidMount(prevState) {
+    console.log('componentDidMount')
+  }
+
   deleteContact = contactId => {
     this.setState(prevState => {
       return {
