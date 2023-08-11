@@ -19,11 +19,20 @@ export default class App extends Component {
   };
 
   componentDidUpdate(prevState) {
-    console.log("componentDidUpdate")
+    if (this.state.contacts !== prevState) {
+      localStorage.setItem('listContacts', JSON.stringify(this.state.contacts));
+    
+    }
+   
   }
 
-  componentDidMount(prevState) {
-    console.log('componentDidMount')
+  componentDidMount() {
+    const contacts = localStorage.getItem('listContacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+   
   }
 
   deleteContact = contactId => {
